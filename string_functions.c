@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strlen - returns the length of a string
+ * _strlen_ - returns the length of a string
  * @s: the string whose length to check
  *
  * Return: integer length of string
@@ -19,7 +19,7 @@ int _strlen_(char *s)
 }
 
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
+ * _strcmp_ - performs lexicogarphic comparison of two strangs.
  * @s1: the first strang
  * @s2: the second strang
  *
@@ -41,7 +41,7 @@ int _strcmp_(char *s1, char *s2)
 }
 
 /**
- * starts_with - checks if needle starts with haystack
+ * tebda_with - checks if needle starts with haystack
  * @haystack: string to search
  * @needle: the substring to find
  *
@@ -56,7 +56,7 @@ char *tebda_with(const char *haystack, const char *needle)
 }
 
 /**
- * _strcat - concatenates two strings
+ * _strcat_ - concatenates two strings
  * @destination: the destination buffer
  * @source: the source buffer
  *

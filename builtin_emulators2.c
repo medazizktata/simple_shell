@@ -15,12 +15,12 @@ int _myhistory_(info_t *information)
 
 /**
  * unset_aliaas - sets alias to string
- * @information: parameter struct
+ * @inf: parameter struct
  * @string: the string alias
  *
  * Return: Always 0 on success, 1 on error
  */
-int unset_aliaas(info_t *information, char *string)
+int unset_aliaas(info_t *inf, char *string)
 {
 	char *p, c;
 	int ret;
@@ -30,8 +30,8 @@ int unset_aliaas(info_t *information, char *string)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = delete_node_at_ind(&(information->alias),
-		get_node_ind(information->alias, node_yebda_with(information->alias, string, -1)));
+	ret = delete_node_at_ind(&(inf->alias),
+		get_node_ind(inf->alias, node_yebda_with(inf->alias, string, -1)));
 	*p = c;
 	return (ret);
 }
@@ -82,19 +82,19 @@ int print_aliaas(list_t *nd)
 
 /**
  * _myaliaas_ - mimics the alias builtin (man alias)
- * @information: Structure containing potential arguments. Used to maintain
+ * @inff: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
-int _myaliaas_(info_t *information)
+int _myaliaas_(info_t *inff)
 {
 	int i = 0;
 	char *p = NULL;
 	list_t *nd = NULL;
 
-	if (information->argc == 1)
+	if (inff->argc == 1)
 	{
-		nd = information->alias;
+		nd = inff->alias;
 		while (nd)
 		{
 			print_aliaas(nd);
@@ -102,13 +102,13 @@ int _myaliaas_(info_t *information)
 		}
 		return (0);
 	}
-	for (i = 1; information->argv[i]; i++)
+	for (i = 1; inff->argv[i]; i++)
 	{
-		p = _strchr_(information->argv[i], '=');
+		p = _strchr_(inff->argv[i], '=');
 		if (p)
-			set_aliaas(information, information->argv[i]);
+			set_aliaas(inff, inff->argv[i]);
 		else
-			print_aliaas(node_yebda_with(information->alias, information->argv[i], '='));
+			print_aliaas(node_yebda_with(inff->alias, inff->argv[i], '='));
 	}
 
 	return (0);

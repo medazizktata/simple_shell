@@ -9,19 +9,19 @@
 
 char *get_histoire_fichier(info_t *information)
 {
-	char *buffer, *directory;
+	char *buf, *dir;
 
-	directory = _getenv_(information, "HOME=");
-	if (!directory)
+	dir = _getenv_(information, "HOME=");
+	if (!dir)
 		return (NULL);
-	buffer = malloc(sizeof(char) * (_strlen_(directory) + _strlen_(HIST_FILE) + 2));
-	if (!buffer)
+	buf = malloc(sizeof(char) * (_strlen_(dir) + _strlen_(HIST_FILE) + 2));
+	if (!buf)
 		return (NULL);
-	buffer[0] = 0;
-	_strcpy_(buffer, directory);
-	_strcat_(buffer, "/");
-	_strcat_(buffer, HIST_FILE);
-	return (buffer);
+	buf[0] = 0;
+	_strcpy_(buf, dir);
+	_strcat_(buf, "/");
+	_strcat_(buf, HIST_FILE);
+	return (buf);
 }
 
 /**

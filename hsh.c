@@ -79,53 +79,53 @@ int find_builting(info_t *information)
 
 /**
  * find_command - finds a command in PATH
- * @information: the parameter & return information struct
+ * @inf: the parameter & return information struct
  *
  * Return: void
  */
-void find_command(info_t *information)
+void find_command(info_t *inf)
 {
 	char *path = NULL;
 	int i, k;
 
-	information->path = information->argv[0];
-	if (information->linecount_flag == 1)
+	inf->path = inf->argv[0];
+	if (inf->linecount_flag == 1)
 	{
-		information->line_count++;
-		information->linecount_flag = 0;
+		inf->line_count++;
+		inf->linecount_flag = 0;
 	}
-	for (i = 0, k = 0; information->arg[i]; i++)
-		if (!is_delim_(information->arg[i], " \t\n"))
+	for (i = 0, k = 0; inf->arg[i]; i++)
+		if (!is_delim_(inf->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
 
-	path = find_path_(information, _getenv_(information, "PATH="), information->argv[0]);
+	path = find_path_(inf, _getenv_(inf, "PATH="), inf->argv[0]);
 	if (path)
 	{
-		information->path = path;
-		fork_command(information);
+		inf->path = path;
+		fork_command(inf);
 	}
 	else
 	{
-		if ((interactif(information) || _getenv_(information, "PATH=")
-			|| information->argv[0][0] == '/') && is_command(information, information->argv[0]))
-			fork_command(information);
-		else if (*(information->arg) != '\n')
+		if ((interactif(inf) || _getenv_(inf, "PATH=")
+			|| inf->argv[0][0] == '/') && is_command(inf, inf->argv[0]))
+			fork_command(inf);
+		else if (*(inf->arg) != '\n')
 		{
-			information->status = 127;
-			print_8alta(information, "not found\n");
+			inf->status = 127;
+			print_8alta(inf, "not found\n");
 		}
 	}
 }
 
 /**
  * fork_command - forks a an exec thread to run cmd
- * @information: the parameter & return information struct
+ * @info: the parameter & return information struct
  *
  * Return: void
  */
-void fork_command(info_t *information)
+void fork_command(info_t *info)
 {
 	pid_t child_processid;
 
@@ -138,9 +138,9 @@ void fork_command(info_t *information)
 	}
 	if (child_processid == 0)
 	{
-		if (execve(information->path, information->argv, get_environ(information)) == -1)
+		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
-			free_information(information, 1);
+			free_info(info, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
@@ -149,12 +149,12 @@ void fork_command(info_t *information)
 	}
 	else
 	{
-		wait(&(information->status));
-		if (WIFEXITED(information->status))
+		wait(&(info->status));
+		if (WIFEXITED(info->status))
 		{
-			information->status = WEXITSTATUS(information->status);
-			if (information->status == 126)
-				print_8alta(information, "Permission denied\n");
+			info->status = WEXITSTATUS(info->status);
+			if (info->status == 126)
+				print_8alta(info, "Permission denied\n");
 		}
 	}
 }
