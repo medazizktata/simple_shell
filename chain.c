@@ -37,32 +37,32 @@ int is_chaiin(info_t *information, char *buffer, size_t *pos)
 
 /**
  * check_chaiin - checks we should continue chaining based on last status
- * @information: the parameter struct
- * @buffer: the char buffer
+ * @inf: the parameter struct
+ * @buf: the char buffer
  * @pos: address of current position in buffer
  * @i: starting position in buffer
- * @length: length of buffer
+ * @lg: length of buffer
  *
  * Return: Void
  */
-void check_chaiin(info_t *information, char *buffer, size_t *pos, size_t i, size_t length)
+void check_chaiin(info_t *inf, char *buf, size_t *pos, size_t i, size_t lg)
 {
 	size_t j = *pos;
 
-	if (information->cmd_buf_type == CMD_AND)
+	if (inf->cmd_buf_type == CMD_AND)
 	{
-		if (information->status)
+		if (inf->status)
 		{
-			buffer[i] = 0;
-			j = length;
+			buf[i] = 0;
+			j = lg;
 		}
 	}
-	if (information->cmd_buf_type == CMD_OR)
+	if (inf->cmd_buf_type == CMD_OR)
 	{
-		if (!information->status)
+		if (!inf->status)
 		{
-			buffer[i] = 0;
-			j = length;
+			buf[i] = 0;
+			j = lg;
 		}
 	}
 
