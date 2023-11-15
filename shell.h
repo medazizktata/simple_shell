@@ -13,6 +13,7 @@
 #include <errno.h>
 
 /* for read/write buffers */
+/*Read buffer*/
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
