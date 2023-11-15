@@ -46,7 +46,7 @@ char *dupp_chars(char *pathstring, int start, int stop)
  * find_path_ - finds this cmd in the PATH string
  * @information: the information struct
  * @pathstring: the PATH string
- * @cmd: the cmd to find
+ * @cmd: the cmd to find cmd is actually command u know that right
  *
  * Return: full path of cmd if found or NULL
  */
