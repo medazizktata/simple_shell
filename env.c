@@ -17,7 +17,7 @@ int _myenv_(info_t *inf)
  * @inf: Structure containing potential arguments. Used to maintain
  * @nm: env var nm
  *
- * Return: the value
+ * Return: the value the legend
  */
 char *_getenv_(info_t *inf, const char *nm)
 {
@@ -78,7 +78,7 @@ int _myunsetenv_(info_t *inf)
  * populate_env_lista - populates env linked list
  * @inf: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
- * Return: Always 0
+ * Return: Always 0 always 0 zah
  */
 int populate_env_lista(info_t *inf)
 {
