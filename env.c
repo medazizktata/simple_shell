@@ -4,7 +4,7 @@
  * _myenv_ - prints the current environment
  * @inf: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
- * Return: Always 0
+ * Return: Always 0 0 0 
  */
 int _myenv_(info_t *inf)
 {
